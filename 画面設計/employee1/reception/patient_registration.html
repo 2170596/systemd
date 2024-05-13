@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>患者登録</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center; /* ボタンを中央に配置 */
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>患者登録</h2>
+    <form id="patient-registration-form">
+        <label for="patient-id">患者ID:</label>
+        <input type="text" id="patient-id" name="patient-id">
+        <label for="last-name">患者姓:</label>
+        <input type="text" id="last-name" name="last-name">
+        <label for="first-name">患者名:</label>
+        <input type="text" id="first-name" name="first-name">
+        <label for="insurance-symbol-number">保険証記号番号:</label>
+        <input type="text" id="insurance-symbol-number" name="insurance-symbol-number">
+        <label for="expiration-date">有効期限:</label>
+        <input type="text" id="expiration-date" name="expiration-date">
+        <button type="button" onclick="confirmRegistration()">登録確認</button>
+    </form>
+
+    <div id="error-message" class="error-message" style="display: none;"></div>
+
+    <div id="confirmation-dialog" style="display: none;">
+        <p>登録しますか？</p>
+        <button onclick="submitRegistration()">登録</button>
+        <button onclick="cancelRegistration()">キャンセル</button>
+    </div>
+</div>
+
+<script>
+function confirmRegistration() {
+    // ここに入力内容の確認処理を追加する
+    document.getElementById('confirmation-dialog').style.display = "block";
+}
+
+function submitRegistration() {
+    // ここに登録処理を追加する
+    alert("患者を登録しました。");
+    location.reload(); // ページをリロードしてリセットする
+}
+
+function cancelRegistration() {
+    document.getElementById('confirmation-dialog').style.display = "none";
+}
+</script>
+
+</body>
+</html>

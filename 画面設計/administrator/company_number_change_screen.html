@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>仕入れ先情報変更</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+.container h1 {
+    margin-top: 0;
+    text-align: center;
+    color: #333;
+}
+.container form {
+    display: flex;
+    flex-direction: column;
+}
+.container label {
+    margin-bottom: 5px;
+    color: #555;
+}
+.container input[type="tel"],
+.container input[type="submit"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.container input[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.container input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+.confirmation-message {
+    color: green;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>仕入れ先情報変更</h1>
+    <form id="supplier-info-change-form" action="/supplier_info_change_confirmation" method="post" onsubmit="return confirmChange()">
+        <label for="phone">新しい電話番号:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <input type="submit" value="変更確認">
+    </form>
+
+    <div id="error-message" class="error-message" style="display: none;"></div>
+    <div id="confirmation-message" class="confirmation-message" style="display: none;">変更が完了しました。</div>
+</div>
+
+<script>
+function confirmChange() {
+    var phone = document.getElementById('phone').value;
+
+    // 電話番号のバリデーションを行う
+    // ここでは簡易的なバリデーションとして数字とハイフンのみを許可するものとする
+    var phoneRegex = /^[0-9\-]+$/;
+    if (!phoneRegex.test(phone)) {
+        document.getElementById('error-message').innerText = "正しい電話番号を入力してください。";
+        document.getElementById('error-message').style.display = "block";
+        return false; // フォームの送信をキャンセル
+    } else {
+        document.getElementById('error-message').style.display = "none";
+        document.getElementById('confirmation-message').style.display = "block";
+        return true; // フォームの送信を許可
+    }
+}
+</script>
+
+</body>
+</html>

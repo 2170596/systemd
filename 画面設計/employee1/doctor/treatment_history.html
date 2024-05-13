@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>処置履歴確認機能</title>
+    <style>
+        /* スタイルは適宜変更してください */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>処置履歴確認機能</h1>
+        <form>
+            <label for="patient_id">患者ID:</label>
+            <input type="text" id="patient_id" name="patient_id">
+            <button type="submit">処置履歴を表示する</button>
+        </form>
+
+        <h2>処置履歴</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>日付</th>
+                    <th>処置内容</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 処置履歴のデータがここに表示されます -->
+            </tbody>
+        </table>
+
+        <div class="button-container">
+            <button class="button">メニューに戻る</button>
+            <button class="button">患者IDを指定する</button>
+        </div>
+    </div>
+</body>
+</html>

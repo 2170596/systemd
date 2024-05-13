@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>患者保険証変更</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center; /* ボタンを中央に配置 */
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>患者保険証変更</h2>
+    <form id="insurance-change-form">
+        <label for="patient-id">患者ID:</label>
+        <input type="text" id="patient-id" name="patient-id">
+        <label for="insurance-symbol-number">新しい保険証記号番号:</label>
+        <input type="text" id="insurance-symbol-number" name="insurance-symbol-number">
+        <label for="expiration-date">新しい有効期限:</label>
+        <input type="text" id="expiration-date" name="expiration-date">
+        <button type="button" onclick="confirmInsuranceChange()">変更確認</button>
+    </form>
+
+    <div id="error-message" class="error-message" style="display: none;"></div>
+
+    <div id="confirmation-dialog" style="display: none;">
+        <p>保険証を変更しますか？</p>
+        <button onclick="submitInsuranceChange()">変更</button>
+        <button onclick="cancelInsuranceChange()">キャンセル</button>
+    </div>
+</div>
+
+<script>
+function confirmInsuranceChange() {
+    var newInsuranceSymbolNumber = document.getElementById('insurance-symbol-number').value;
+    var newExpirationDate = document.getElementById('expiration-date').value;
+
+    if (newInsuranceSymbolNumber !== '' && newExpirationDate === '') {
+        document.getElementById('error-message').innerText = "有効期限を入力してください。";
+        document.getElementById('error-message').style.display = "block";
+        return;
+    } else if (newInsuranceSymbolNumber === '' && newExpirationDate !== '') {
+        // 保険証記号番号が変更されない場合はここに適切な処理を追加する
+    }
+
+    // ここに入力内容の確認処理を追加する
+    document.getElementById('confirmation-dialog').style.display = "block";
+}
+
+function submitInsuranceChange() {
+    // ここに変更処理を追加する
+    alert("保険証を変更しました。");
+    location.reload(); // ページをリロードしてリセットする
+}
+
+function cancelInsuranceChange() {
+    document.getElementById('confirmation-dialog').style.display = "none";
+}
+</script>
+
+</body>
+</html>

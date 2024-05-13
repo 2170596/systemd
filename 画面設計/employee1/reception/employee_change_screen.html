@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>パスワード変更</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>パスワード変更</h2>
+    <form id="password-change-form">
+        <label for="user-id">ユーザーID:</label>
+        <input type="text" id="user-id" name="user-id">
+        <button type="button" onclick="searchUser()">検索</button>
+    </form>
+
+    <div id="error-message" class="error-message" style="display: none;"></div>
+
+    <div id="change-form" style="display: none;">
+        <form id="password-update-form">
+            <label for="new-password">新しいパスワード:</label>
+            <input type="password" id="new-password" name="new-password">
+            <label for="confirm-new-password">新しいパスワード(確認用):</label>
+            <input type="password" id="confirm-new-password" name="confirm-new-password">
+            <button type="button" onclick="confirmPasswordChange()">変更確認</button>
+        </form>
+    </div>
+
+    <div id="confirmation-dialog" style="display: none;">
+        <p>パスワードを変更しますか？</p>
+        <button onclick="submitPasswordChange()">変更</button>
+        <button onclick="cancelPasswordChange()">キャンセル</button>
+    </div>
+</div>
+
+<script>
+function searchUser() {
+    var userId = document.getElementById('user-id').value;
+    if (userId === "211002") {
+        document.getElementById('error-message').style.display = "none";
+        document.getElementById('change-form').style.display = "block";
+    } else {
+        document.getElementById('error-message').innerText = "ユーザーが見つかりませんでした。";
+        document.getElementById('error-message').style.display = "block";
+        document.getElementById('change-form').style.display = "none";
+        document.getElementById('confirmation-dialog').style.display = "none";
+    }
+}
+
+function confirmPasswordChange() {
+    var newPassword = document.getElementById('new-password').value;
+    var confirmNewPassword = document.getElementById('confirm-new-password').value;
+    if (newPassword === confirmNewPassword) {
+        document.getElementById('error-message').style.display = "none";
+        document.getElementById('confirmation-dialog').style.display = "block";
+    } else {
+        document.getElementById('error-message').innerText = "パスワードが一致しません。";
+        document.getElementById('error-message').style.display = "block";
+        document.getElementById('confirmation-dialog').style.display = "none";
+    }
+}
+
+function submitPasswordChange() {
+    // パスワード変更処理を実行する関数を記述する（例えば、Ajaxリクエストを送信するなど）
+    alert("パスワードを変更しました。");
+    // ページをリロードするなどの適切な処理を実行する
+    location.reload();
+}
+
+function cancelPasswordChange() {
+    document.getElementById('confirmation-dialog').style.display = "none";
+}
+</script>
+
+</body>
+</html>

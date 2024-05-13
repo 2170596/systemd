@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>薬投与削除</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center; /* ボタンを中央に配置 */
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* 緑の背景色 */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>薬投与削除</h2>
+    <form id="medication-delete-form">
+        <label for="medicine-to-delete">中止する薬剤名:</label>
+        <select id="medicine-to-delete" name="medicine-to-delete">
+            <option value="medicine1">薬剤1</option>
+            <option value="medicine2">薬剤2</option>
+            <option value="medicine3">薬剤3</option>
+            <!-- ここに適切な薬剤名を追加 -->
+        </select>
+        <label for="quantity">数量:</label>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" required>
+        <button type="button" onclick="confirmDelete()">中止</button>
+    </form>
+
+    <div id="confirmation-dialog" style="display: none;">
+        <h3>中止確認</h3>
+        <p>選択された薬剤の投与を中止しますか？</p>
+        <button onclick="cancelDelete()">キャンセル</button>
+        <button onclick="deleteMedication()">中止</button>
+    </div>
+
+    <div id="error-message" class="error-message" style="display: none;"></div>
+</div>
+
+<script>
+function confirmDelete() {
+    document.getElementById('confirmation-dialog').style.display = "block";
+}
+
+function cancelDelete() {
+    document.getElementById('confirmation-dialog').style.display = "none";
+}
+
+function deleteMedication() {
+    var quantity = document.getElementById('quantity').value;
+    alert("薬剤の投与が中止されました。数量: " + quantity); // 実際にはDBから削除などの処理を行う
+    location.reload(); // ページをリロードして最初の状態に戻す
+}
+</script>
+
+</body>
+</html>

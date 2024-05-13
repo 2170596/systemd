@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>薬投与指示</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center; /* ボタンを中央に配置 */
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>薬投与指示</h2>
+    <form id="medication-order-form">
+        <label for="medicine">薬剤名:</label>
+        <select id="medicine" name="medicine">
+            <option value="medicine1">薬剤1</option>
+            <option value="medicine2">薬剤2</option>
+            <option value="medicine3">薬剤3</option>
+            <!-- ここに適切な薬剤名を追加 -->
+        </select>
+        <label for="quantity">数量:</label>
+        <input type="text" id="quantity" name="quantity">
+        <button type="button" onclick="confirmMedicationOrder()">確認</button>
+    </form>
+
+    <div id="confirmation-dialog" style="display: none;">
+        <h3>確認画面</h3>
+        <ul id="confirmed-medication-list"></ul>
+        <button onclick="backToMedicationSelection()">薬剤選択画面へ戻る</button>
+        <button onclick="deleteMedicationOrder()">削除</button>
+        <button onclick="confirmTreatment()">処置確定</button>
+    </div>
+
+    <div id="error-message" class="error-message" style="display: none;"></div>
+</div>
+
+<script>
+function confirmMedicationOrder() {
+    var selectedMedicine = document.getElementById('medicine').value;
+    var quantity = document.getElementById('quantity').value;
+
+    if (quantity === '') {
+        document.getElementById('error-message').innerText = "数量を入力してください。";
+        document.getElementById('error-message').style.display = "block";
+        return;
+    }
+
+    // 確認画面に投与指示を追加する
+    var confirmedMedicationList = document.getElementById('confirmed-medication-list');
+    var listItem = document.createElement('li');
+    listItem.textContent = selectedMedicine + ' - 数量: ' + quantity;
+    confirmedMedicationList.appendChild(listItem);
+
+    document.getElementById('confirmation-dialog').style.display = "block";
+    document.getElementById('error-message').style.display = "none";
+}
+
+function backToMedicationSelection() {
+    document.getElementById('confirmation-dialog').style.display = "none";
+}
+
+function deleteMedicationOrder() {
+    var confirmedMedicationList = document.getElementById('confirmed-medication-list');
+    confirmedMedicationList.removeChild(confirmedMedicationList.lastElementChild);
+}
+
+function confirmTreatment() {
+    alert("処置を確定しました。"); // 実際にはDBへの登録などの処理を行う
+    location.reload(); // ページをリロードして最初の状態に戻す
+}
+</script>
+
+</body>
+</html>

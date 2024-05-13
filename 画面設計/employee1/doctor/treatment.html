@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>処置確定</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50; /* 緑の背景色 */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049; /* 緑のhover時の背景色 */
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>処置確定</h2>
+    <p>処置情報を登録しますか？</p>
+    <button type="button" onclick="confirmProcedure()">処置確定</button>
+
+    <div id="error-message" class="error-message" style="display: none;"></div>
+</div>
+
+<script>
+function confirmProcedure() {
+    alert("処置が確定されました。"); // 実際にはDBへの登録などの処理を行う
+}
+</script>
+
+</body>
+</html>

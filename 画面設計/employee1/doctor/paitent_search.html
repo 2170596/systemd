@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>患者名検索</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center; /* ボタンを中央に配置 */
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>患者名検索</h2>
+    <form id="patient-search-form">
+        <label for="patient-name">患者名:</label>
+        <input type="text" id="patient-name" name="patient-name">
+        <button type="button" onclick="searchPatients()">検索</button>
+    </form>
+
+    <div id="search-results" style="display: none;">
+        <h3>検索結果:</h3>
+        <ul id="patient-list"></ul>
+    </div>
+
+    <div id="error-message" class="error-message" style="display: none;"></div>
+</div>
+
+<script>
+function searchPatients() {
+    var patientName = document.getElementById('patient-name').value;
+
+    // ここで患者名をDBに送信して検索を行い、該当する患者を取得する
+    var searchResults = []; // 仮の検索結果
+
+    if (searchResults.length > 0) {
+        displaySearchResults(searchResults);
+    } else {
+        document.getElementById('error-message').innerText = "該当する患者が見つかりませんでした。";
+        document.getElementById('error-message').style.display = "block";
+        document.getElementById('search-results').style.display = "none";
+    }
+}
+
+function displaySearchResults(results) {
+    var patientList = document.getElementById('patient-list');
+    patientList.innerHTML = '';
+
+    results.forEach(function(patient) {
+        var listItem = document.createElement('li');
+        listItem.textContent = patient.name; // 仮の患者名
+        patientList.appendChild(listItem);
+    });
+
+    document.getElementById('search-results').style.display = "block";
+    document.getElementById('error-message').style.display = "none";
+}
+</script>
+
+</body>
+</html>
