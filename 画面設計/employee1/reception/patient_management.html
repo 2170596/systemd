@@ -55,8 +55,8 @@ button:hover {
 <div class="container">
     <h2>患者保険証変更</h2>
     <form id="insurance-change-form">
-        <label for="patient-id">患者ID:</label>
-        <input type="text" id="patient-id" name="patient-id">
+        <label for="supplier_id">患者ID:</label>
+        <input type="text" id="supplier_id" name="supplier_id" value="{{ supplier_info['supplier_id'] }}" required readonly>
         <label for="insurance-symbol-number">新しい保険証記号番号:</label>
         <input type="text" id="insurance-symbol-number" name="insurance-symbol-number">
         <label for="expiration-date">新しい有効期限:</label>
